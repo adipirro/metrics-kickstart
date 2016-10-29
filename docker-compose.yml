@@ -6,7 +6,6 @@ services:
       - "3000:3000"
     volumes:
       - grafana:/var/lib/grafana
-
   influxdb:
     image: influxdb:1.0.2-alpine
     ports:
@@ -15,18 +14,14 @@ services:
     volumes:
       - influxdb:/var/lib/influxdb
       - "./influxdb/influxdb.conf:/etc/influxdb/influxdb.conf:ro"
-
   telegraf:
     image: telegraf:1.0.1-alpine
     depends_on:
       - "influxdb"
     ports:
       - "8125:8125/udp"
-      - "8092:8092/udp"
-      - "8094:8094"
     volumes:
       - "./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro"
-
 volumes:
   influxdb:
     driver: local
