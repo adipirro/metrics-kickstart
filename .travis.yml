@@ -5,4 +5,7 @@ services:
 
 # stupidity check
 script:
-- docker compose up -d
+- docker-compose up -d
+- docker ps | grep metricskickstart_telegraf
+- docker ps | grep metricskickstart_influxdb
+- docker ps | grep metricskickstart_grafana
