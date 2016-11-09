@@ -4,6 +4,9 @@ services:
     image: adipirro852/grafana:alpine
     ports:
       - "3000:3000"
+    volumes:
+      - grafana_db:/grafana/data/db
+      - "./grafana/custom.ini:/grafana/conf/custom.ini:ro"
   influxdb:
     image: influxdb:alpine
     ports:
@@ -23,5 +26,5 @@ services:
 volumes:
   influxdb:
     driver: local
-  grafana:
+  grafana_db:
     driver: local
